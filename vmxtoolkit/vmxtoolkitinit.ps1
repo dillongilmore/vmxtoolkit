@@ -67,12 +67,13 @@ elseif ($OS = uname) {
 
             $Global:VMware_vdiskmanager = Join-Path $VMware_BIN_Path 'vmware-vdiskmanager'
             $Global:vmrun = Join-Path $VMware_BIN_Path "vmrun"
+
             switch ($Fusion_Version.Major) {
-                "10" {
+                { [int]$_ -ge 10 } {
                     $Global:VMware_OVFTool = "/Applications/VMware Fusion.app/Contents/Library/VMware OVF Tool/ovftool"
                     [version]$Global:vmwareversion = "14.0.0.0"
                 }
-					
+
                 default {
                     $Global:VMware_OVFTool = Join-Path $VMware_Path 'ovftool'
                     [version]$Global:vmwareversion = "12.0.0.0"
